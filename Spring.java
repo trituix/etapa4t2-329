@@ -1,4 +1,5 @@
 import java.awt.*;
+//import java.Math.*;
 
 public class Spring extends PhysicsElement {
    private static int id=0;  // Spring identification
@@ -96,6 +97,41 @@ public class Spring extends PhysicsElement {
 
    public void dragTo(double x)
    {
-
+      double a_pos = getAendPosition();
+      double b_pos = getBendPosition();
+      double length = Math.abs(b_pos - a_pos);
+      if(a_end == null) {
+         if(a_pos > b_pos) {
+            aLoosePosition = x + length/2;
+         }
+         else{
+            aLoosePosition = x -length/2;
+         }
+      }
+      else {
+         if(a_pos > b_pos) {
+            ((PhysicsElement) a_end).dragTo(x + length/2);
+         }
+         else {
+            ((PhysicsElement) a_end).dragTo(x - length/2);
+         }
+      }
+      if(b_end == null) {
+         if(a_pos > b_pos) {
+            bLoosePosition = x - length/2;
+         }
+         else {
+            bLoosePosition = x + length/2;
+         }
+      }
+      else {
+         if(a_pos > b_pos) {
+            ((PhysicsElement) b_end).dragTo(x -length/2);
+         }
+         else {
+            ((PhysicsElement) b_end).dragTo(x +length/2);
+         }
+         
+      }
    }
 }
