@@ -19,7 +19,7 @@ public class MyWorld implements ActionListener {
     public MyWorld(PrintStream output){
         out = output;
         t = 0;
-        refreshPeriod = 0.06;      // 60 [ms]
+        refreshPeriod = 0.0083;      // 60 [ms]
         delta_t = 0.00001;          // 0.01 [ms]
         elements = new ArrayList<PhysicsElement>();
         view = null;
@@ -52,6 +52,15 @@ public class MyWorld implements ActionListener {
     public void stop(){
         if(!passingTime.isRunning()) return;
         passingTime.stop();
+    }
+
+    public boolean isRuning() {
+        if(passingTime.isRunning()) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     public void actionPerformed (ActionEvent event) {

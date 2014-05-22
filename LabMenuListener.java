@@ -11,7 +11,9 @@ public class LabMenuListener implements ActionListener {
    public void actionPerformed(ActionEvent e) {
       JMenuItem menuItem = (JMenuItem)(e.getSource());
       String text = menuItem.getText();
-
+      Ball b_aux;
+      Spring s_aux;
+      FixedHook f_aux;
       // Actions associated to main manu options
       if (text.equals("My scenario")) {  // here you define Etapa2's configuration
          world.clean();
@@ -19,22 +21,29 @@ public class LabMenuListener implements ActionListener {
          double radius = 0.1;    // 10 [cm]
          double position = 0.0;  // 1 [m]
          double speed = 0.5;     // 0.5 [m/s]
-         Ball b0 = new Ball(mass, radius, 0.5, 0);
-         Ball b1 = new Ball(mass, radius, 3, 0);
-         FixedHook f0 = new FixedHook(2, 0.2);
+         Ball b0 = new Ball(mass, radius, 1, 0);
+         Ball b1 = new Ball(mass, radius, 2, 0);
+         FixedHook f0 = new FixedHook(0, 0.2);
          Spring s0 = new Spring(1.5, 0.5);
-         s0.attachAend(b0);
-         s0.attachBend(f0);
+         s0.attachAend(f0);
+         s0.attachBend(b0);
          world.addElement(f0);
          world.addElement(s0);
          world.addElement(b0);
          world.addElement(b1);
       }
       if (text.equals("Ball")) {
-        // nothing by now
+        b_aux = new Ball(1.0, 0.1, 0, 0);
+        world.addElement(b_aux);
       }
-      if (text.equals("Fixed Hook")) ; // ; same as nothing
-      if (text.equals("Spring")) ;
+      if (text.equals("Fixed Hook")) {
+         f_aux = new FixedHook(0, 0.2);
+         world.addElement(f_aux);
+      }
+      if (text.equals("Spring")) {
+         s_aux = new Spring(1.5, 0.5);
+         world.addElement(s_aux);
+      }
 
       // Actions associated to MyWorld submenu
       if (text.equals("Start")) {
