@@ -42,22 +42,22 @@ public class FixedHook extends PhysicsElement implements SpringAttachable
 
 	public boolean contains(double x, double y)
 	{
-		return true;
+		return view.contains(x, y);
 	}
 
 	public void setSelected()
 	{
-
+		view.setSelected();
 	}
 
 	public void setReleased()
 	{
-
+		view.setReleased();
 	}
 
 	public void dragTo(double x)
 	{
-
+		pos_t = x;
 	}
 
 	/* Implementacion de SpringAttachable */

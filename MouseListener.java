@@ -26,7 +26,18 @@ public class MouseListener extends MouseAdapter {
       world.repaintView();
    }
    public void mouseDragged(MouseEvent e) {
-      //  to be coded
+      Point2D.Double p = new Point2D.Double(0,0); // Change mouse coordenates from
+      MyWorldView.SPACE_INVERSE_TRANSFORM.transform(e.getPoint(),p);// pixels to meters.
+      PhysicsElement newElement;
+      if(currentElement == null) {
+          newElement = world.find(p.getX(), p.getY());
+          currentElement = newElement;
+      }
+      if(currentElement != null) {
+         System.out.print("Dragged: "+ currentElement.getDescription() + "\n");
+         currentElement.dragTo(p.getX());
+      }
+      world.repaintView();
    }
    public void mouseReleased(MouseEvent e) {
       if (currentElement == null) return;

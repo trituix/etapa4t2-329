@@ -10,7 +10,7 @@ public class BallView {
         this.ball = b;
     }
     public boolean contains (double x, double y){
-        return true;
+        return shape.getBounds2D().contains(x,y);
     }
     public void setSelected (){
         color = Color.RED;

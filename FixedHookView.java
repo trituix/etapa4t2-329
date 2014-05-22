@@ -14,10 +14,10 @@ public class FixedHookView {
 	}
 
 	public boolean contains (double x, double y){
-		return true;
+		return shape.getBounds2D().contains(x,y);
 	}
 	public void setSelected (){
-		color = Color.RED;
+		color = Color.YELLOW;
 	}
 	public void setReleased() {
 		color = Color.GREEN;

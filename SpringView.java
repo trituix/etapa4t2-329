@@ -11,6 +11,8 @@ public class SpringView {
                       new Path2D.Double(Path2D.WIND_EVEN_ODD,xPoints.length);
    private Path2D.Double shape;
    private Stroke stroke;
+   private Color color = Color.BLACK;
+   private boolean isSelected = false;
 
    private Spring spring;
 
@@ -35,21 +37,42 @@ public class SpringView {
       at.rotate(xa_b, 0);
       at.scale(Math.abs(xa_b),  spring.getRestLength());
       shape = (Path2D.Double) at.createTransformedShape(polyline);
-      if (Math.abs(xa_b) < spring.getRestLength())
-         g.setColor(Color.BLACK);
-      else
-         g.setColor(Color.RED);
+      if (Math.abs(xa_b) < spring.getRestLength()) {
+         if(isSelected == true) {
+            color = Color.ORANGE;
+         }
+         else {
+            color = Color.BLACK;
+         }
+         g.setColor(color);
+      }
+      else {
+         if(isSelected == true) {
+            color = Color.ORANGE;
+         }
+         else {
+            color = Color.RED;
+         }
+         g.setColor(color);
+      }
       g.setStroke(stroke);
       g.draw(shape);
    }
    public boolean contains(double x, double y){
       return shape.getBounds2D().contains(x,y);
    }
-   public void setSelected() {
-      /*    */
+   public void setSelected (){
+      isSelected = true;
    }
    public void setReleased() {
-      /* .... */
+      double xa_b = spring.getBendPosition() - spring.getAendPosition();
+      isSelected = false;
+      if (Math.abs(xa_b) < spring.getRestLength()) {
+         color = Color.BLACK;
+      }
+      else {
+         color = Color.RED;
+      }
    }
 
 }
