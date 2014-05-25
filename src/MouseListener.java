@@ -60,7 +60,7 @@ public class MouseListener extends MouseAdapter {
           }
       }
       currentElement.setReleased();
-      currentElement = null;
+      //currentElement = null;
       world.repaintView();
    }
 }

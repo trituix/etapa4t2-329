@@ -94,7 +94,8 @@ public class MyWorld implements ActionListener {
             }
         return null;
     }
-
+    
+ 
     public ArrayList<PhysicsElement> getPhysicsElements(){
         return elements;
     }
@@ -113,7 +114,8 @@ public class MyWorld implements ActionListener {
     public SpringAttachable findAttachableElement(double x)
     {
         for (PhysicsElement e: elements) {
-            if(e instanceof SpringAttachable && ((SpringAttachable) e).getPosition() == x) {
+            if((!(e instanceof Spring)) && e.contains(x,0))  {
+            	e.dragTo(x);
                 return (SpringAttachable) e;
             }
         }

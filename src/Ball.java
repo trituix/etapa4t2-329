@@ -103,6 +103,6 @@ public class Ball extends PhysicsElement implements Simulateable, SpringAttachab
 
     public void detachSpring(Spring s)
     {
-
+    	this.springs.remove(s);
     }
 }

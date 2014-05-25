@@ -69,7 +69,7 @@ public class FixedHook extends PhysicsElement implements SpringAttachable
 
   	public void detachSpring(Spring s)
   	{
-
+  		this.springs.remove(s);
   	}
 
   	public double getPosition()
