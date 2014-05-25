@@ -52,15 +52,15 @@ public class MouseListener extends MouseAdapter {
             // so we hook it to a spring end.
             Spring spring = (Spring) currentElement;
             double a=spring.getAendPosition();
-            if (element.contains(a, 0))
+            if (element.contains(a, 0)) //a==p.getX()
                spring.attachAend(element);
             double b=spring.getBendPosition();
-            if (element.contains(b, 0))
+            if (element.contains(b, 0))//b==p.getX()
                spring.attachBend(element);
           }
       }
       currentElement.setReleased();
-      //currentElement = null;
+      currentElement = null;
       world.repaintView();
    }
 }
