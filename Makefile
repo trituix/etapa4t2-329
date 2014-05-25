@@ -1,7 +1,7 @@
 .PHONY: run
 
 default:
-	javac -d . *.java
+	javac -d . src/*.java
 
 run:
 	java PhysicsLab
