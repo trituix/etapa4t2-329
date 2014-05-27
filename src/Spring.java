@@ -100,7 +100,9 @@ public class Spring extends PhysicsElement {
       double a_pos = getAendPosition();
       double b_pos = getBendPosition();
       double length = Math.abs(b_pos - a_pos);
-      if(a_end == null) {
+      double relativeA_pos = Math.abs(x - a_pos);
+      double relativeB_pos = Math.abs(x - b_pos);
+      /*if(a_end == null) {
          if(a_pos > b_pos) {
             aLoosePosition = x + length/2;
          }
@@ -133,5 +135,38 @@ public class Spring extends PhysicsElement {
          }
          
       }
-   }
+   }*/
+      
+      if (a_end ==null && b_end ==null){
+              if(relativeA_pos>relativeB_pos)
+              bLoosePosition = x;
+              else aLoosePosition = x;
+      }
+      else if (a_end ==null && b_end !=null){
+    	  if(relativeA_pos>relativeB_pos){	
+    		   detachBend();
+    		  ((PhysicsElement) b_end).dragTo(x);
+    	  }
+    	  else aLoosePosition = x;
+      }
+      else if (a_end !=null && b_end ==null){
+    	  if(relativeA_pos>relativeB_pos)
+    		  bLoosePosition = x;
+    	  else {
+    		  detachAend();
+    		  ((PhysicsElement) a_end).dragTo(x);
+    	  }
+      }
+      else if(a_end !=null && b_end !=null){
+    	  if(relativeA_pos>relativeB_pos){
+    		  detachBend();
+    		  bLoosePosition = x;
+    	  }
+    	  else {
+    		  detachAend();
+    		  aLoosePosition = x;
+    	  }
+      }
+      
+      }
 }
