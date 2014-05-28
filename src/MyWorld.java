@@ -115,7 +115,6 @@ public class MyWorld implements ActionListener {
     {
         for (PhysicsElement e: elements) {
             if((!(e instanceof Spring)) && e.contains(x,0))  {
-            	e.dragTo(x);
                 return (SpringAttachable) e;
             }
         }
