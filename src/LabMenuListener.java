@@ -52,10 +52,14 @@ public class LabMenuListener implements ActionListener {
       if (text.equals("Stop")) {
          world.stop();
       }
+      if (text.equals("Clear")) {
+          world.clean();
+       }
       if (text.equals("Delta time")) {
          String data = JOptionPane.showInputDialog("Enter delta t [s]");
          world.setDelta_t(Double.parseDouble(data));
       }
+      
       if (text.equals("Refresh time")) {
          String data = JOptionPane.showInputDialog("Enter refresh time [s]");
          world.setRefreshPeriod(Double.parseDouble(data));
