@@ -1,4 +1,5 @@
 import java.awt.*;
+//import java.Math.*;
 
 public class Spring extends PhysicsElement {
    private static int id=0;  // Spring identification
@@ -27,7 +28,8 @@ public class Spring extends PhysicsElement {
       a_end = sa;
       sa.attachSpring(this);
    }
-   public void attachBend (SpringAttachable sa) {  // note: we attach a spring to a ball,
+   public void attachBend (SpringAttachable sa) {
+	   // note: we attach a spring to a ball,
       if(b_end!=null)                              // not the other way around.
         b_end.detachSpring(this);
       b_end = sa;
@@ -93,9 +95,100 @@ public class Spring extends PhysicsElement {
       String s = getAendPosition() + "\t" + getBendPosition();
       return s;
    }
+   
+   public boolean existAend(){
+	   if (a_end==null)
+		   return false;
+	   else return true;
+   }
+   public boolean existBend(){
+	   if (b_end==null)
+		   return false;
+	   else return true;
+   }
 
    public void dragTo(double x)
    {
-
-   }
+      double a_pos = getAendPosition();
+      double b_pos = getBendPosition();
+     
+      double length = Math.abs(b_pos - a_pos);
+      double relativeA_pos = Math.abs(x - a_pos);
+      double relativeB_pos = Math.abs(x - b_pos);
+      /*if(a_end == null) {
+         if(a_pos > b_pos) {
+            aLoosePosition = x + length/2;
+         }
+         else{
+            aLoosePosition = x -length/2;
+         }
+      }
+      else {
+         if(a_pos > b_pos) {
+            ((PhysicsElement) a_end).dragTo(x + length/2);
+         }
+         else {
+            ((PhysicsElement) a_end).dragTo(x - length/2);
+         }
+      }
+      if(b_end == null) {
+         if(a_pos > b_pos) {
+            bLoosePosition = x - length/2;
+         }
+         else {
+            bLoosePosition = x + length/2;
+         }
+      }
+      else {
+         if(a_pos > b_pos) {
+            ((PhysicsElement) b_end).dragTo(x -length/2);
+         }
+         else {
+            ((PhysicsElement) b_end).dragTo(x +length/2);
+         }
+         
+      }
+   }*/
+      
+      if (a_end ==null && b_end ==null){
+              if(relativeA_pos>relativeB_pos)
+              {
+              bLoosePosition = x;
+              aLoosePosition = x - length;
+              }
+              else {
+            	  aLoosePosition = x;
+            	  bLoosePosition = x + length;
+              }
+      }
+      else if (a_end ==null && b_end !=null){
+    	  if(relativeA_pos>relativeB_pos){	
+    		   detachBend();
+    		  ((PhysicsElement) b_end).dragTo(x);
+    		  aLoosePosition = x - length;
+    	  }
+    	  else aLoosePosition = x;
+      }
+      else if (a_end !=null && b_end ==null){
+    	  if(relativeA_pos>relativeB_pos)
+    		  bLoosePosition = x;
+    	  else {
+    		  detachAend();
+    		  ((PhysicsElement) a_end).dragTo(x);
+    		  bLoosePosition = x + length;
+    	  }
+      }
+      else if(a_end !=null && b_end !=null){
+    	  if(relativeA_pos>relativeB_pos){
+    		  detachBend();
+    		  bLoosePosition = x;
+    	  }
+    	  else {
+    		  detachAend();
+    		  aLoosePosition = x;
+    	  }
+      }
+      
+      }
 }
+

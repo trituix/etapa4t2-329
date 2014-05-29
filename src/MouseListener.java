@@ -1,19 +1,30 @@
 import javax.swing.JPanel;
+
+import java.util.Scanner;
 import java.awt.event.*;
-import java.awt.event.MouseAdapter;
 import java.awt.*;
 import java.awt.geom.Point2D;
+import java.util.ArrayList;
 
 public class MouseListener extends MouseAdapter {
    private MyWorld world;
    private PhysicsElement currentElement;
+   private String letra;
+   
    public MouseListener (MyWorld w){
       world = w;
+      
+   
    }
+  
    public void mouseMoved(MouseEvent e) {
+	  
+	  int contador = 1;
       Point2D.Double p = new Point2D.Double(0,0); // Change mouse coordenates from
       MyWorldView.SPACE_INVERSE_TRANSFORM.transform(e.getPoint(),p);// pixels to meters.
       PhysicsElement newElement = world.find(p.getX(), p.getY());
+      ArrayList<PhysicsElement> allElement = world.findAll(p.getX(), p.getY());
+      boolean key = world.key();
       if (newElement == currentElement) return;
       if (currentElement != null) {
          currentElement.setReleased();
@@ -23,10 +34,36 @@ public class MouseListener extends MouseAdapter {
          currentElement = newElement;
          currentElement.setSelected();
       }
+         if (newElement !=null && allElement.size()>1){
+    	  if (key == true){
+    	  	if (contador==allElement.size()){
+    		  currentElement = allElement.get(contador);
+    		  currentElement.setSelected();
+    		  contador =1;
+    		 }
+    		else {
+    		currentElement = allElement.get(contador);
+    		currentElement.setSelected();
+    		contador ++;
+    		}
+    	  } 
+    	  
+      } 
       world.repaintView();
    }
    public void mouseDragged(MouseEvent e) {
-      //  to be coded
+      Point2D.Double p = new Point2D.Double(0,0); // Change mouse coordenates from
+      MyWorldView.SPACE_INVERSE_TRANSFORM.transform(e.getPoint(),p);// pixels to meters.
+      PhysicsElement newElement;
+      if(world.isRuning()) return;
+      if(currentElement == null) {
+          newElement = world.find(p.getX(), p.getY());
+          currentElement = newElement;
+      }
+      if(currentElement != null) {
+         currentElement.dragTo(p.getX());
+      }
+      world.repaintView();
    }
    public void mouseReleased(MouseEvent e) {
       if (currentElement == null) return;
@@ -41,10 +78,10 @@ public class MouseListener extends MouseAdapter {
             // so we hook it to a spring end.
             Spring spring = (Spring) currentElement;
             double a=spring.getAendPosition();
-            if (a==p.getX())
+            if (element.contains(a, 0)) //a==p.getX()
                spring.attachAend(element);
             double b=spring.getBendPosition();
-            if (b==p.getX())
+            if (element.contains(b, 0))//b==p.getX()
                spring.attachBend(element);
           }
       }
@@ -53,3 +90,4 @@ public class MouseListener extends MouseAdapter {
       world.repaintView();
    }
 }
+

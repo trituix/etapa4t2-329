@@ -55,6 +55,9 @@ class PhysicsLab_GUI extends JFrame {
       menuItem = new JMenuItem("Stop");
       menuItem.addActionListener(menu_l);
       menu.add(menuItem);
+      menuItem = new JMenuItem("Clear");
+      menuItem.addActionListener(menu_l);
+      menu.add(menuItem);
       subMenu = new JMenu("Simulator");
       menuItem = new JMenuItem("Refresh time");
       menuItem.addActionListener(menu_l);
