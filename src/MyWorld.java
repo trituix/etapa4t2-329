@@ -1,6 +1,8 @@
 import java.util.*;
 import java.io.*;
+
 import javax.swing.Timer;
+
 import java.awt.event.*;
 
 public class MyWorld implements ActionListener {
@@ -93,6 +95,10 @@ public class MyWorld implements ActionListener {
                 if ((b!=me) && b.collide(me)) return b;
             }
         return null;
+    }
+    public boolean key(){
+    	KeyHandler key = new KeyHandler();
+    	return key.getRelease();
     }
     
  

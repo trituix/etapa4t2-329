@@ -18,6 +18,7 @@ public class MyWorldView extends JPanel {
    private static double AXES_SCALE = 200.0;
    private MyWorld world;
    private MouseListener mListener;
+   private KeyHandler klistener; 
 
    static {
         SPACE_TRANSFORM = AffineTransform.getTranslateInstance(X_ORIGEN, Y_ORIGEN);
@@ -37,6 +38,8 @@ public class MyWorldView extends JPanel {
         mListener = new MouseListener(w);
         addMouseMotionListener(mListener);
         addMouseListener(mListener);
+        klistener = new KeyHandler();
+        addKeyListener(klistener);
     }
     public void repaintView(){
         repaint();
