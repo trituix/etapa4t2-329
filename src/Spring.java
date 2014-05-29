@@ -28,7 +28,8 @@ public class Spring extends PhysicsElement {
       a_end = sa;
       sa.attachSpring(this);
    }
-   public void attachBend (SpringAttachable sa) {  // note: we attach a spring to a ball,
+   public void attachBend (SpringAttachable sa) {
+	   // note: we attach a spring to a ball,
       if(b_end!=null)                              // not the other way around.
         b_end.detachSpring(this);
       b_end = sa;
