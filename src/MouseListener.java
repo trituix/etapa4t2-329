@@ -1,19 +1,24 @@
 import javax.swing.JPanel;
+import java.util.Scanner;
 import java.awt.event.*;
-import java.awt.event.MouseAdapter;
 import java.awt.*;
 import java.awt.geom.Point2D;
+import java.util.ArrayList;
 
 public class MouseListener extends MouseAdapter {
    private MyWorld world;
    private PhysicsElement currentElement;
+   private String letra;
    public MouseListener (MyWorld w){
       world = w;
    }
    public void mouseMoved(MouseEvent e) {
+	  Scanner sc = new Scanner(System.in);
+	  int contador = 1;
       Point2D.Double p = new Point2D.Double(0,0); // Change mouse coordenates from
       MyWorldView.SPACE_INVERSE_TRANSFORM.transform(e.getPoint(),p);// pixels to meters.
       PhysicsElement newElement = world.find(p.getX(), p.getY());
+      ArrayList<PhysicsElement> allElement = world.findAll(p.getX(), p.getY());
       if (newElement == currentElement) return;
       if (currentElement != null) {
          currentElement.setReleased();
@@ -23,6 +28,23 @@ public class MouseListener extends MouseAdapter {
          currentElement = newElement;
          currentElement.setSelected();
       }
+      /*   if (newElement !=null && allElement.size()>1){
+    	  System.out.println ("mas de un objeto junto");
+    	   letra = sc.next();
+    	  if (letra.equalsIgnoreCase("n") == true){
+    	  	if (contador==allElement.size()){
+    		  currentElement = allElement.get(contador);
+    		  currentElement.setSelected();
+    		  contador =1;
+    		 }
+    		else {
+    		currentElement = allElement.get(contador);
+    		currentElement.setSelected();
+    		contador ++;
+    		}
+    	  } 
+    	  
+      } */
       world.repaintView();
    }
    public void mouseDragged(MouseEvent e) {

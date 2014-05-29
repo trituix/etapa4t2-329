@@ -105,6 +105,17 @@ public class MyWorld implements ActionListener {
             if (e.contains(x,y)) return e;
         return null;
     }
+    
+    public  ArrayList<PhysicsElement> findAll(double x, double y) {
+    	ArrayList<PhysicsElement> elementscontains;
+    	elementscontains =new ArrayList<PhysicsElement>();
+        for (PhysicsElement e: elements){
+            if (e.contains(x,y)){
+            	elementscontains.add(e);
+            }
+        }
+        return elementscontains;
+    }
 
     public void clean() {
         elements.clear();
