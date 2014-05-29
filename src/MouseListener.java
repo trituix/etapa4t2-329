@@ -35,10 +35,7 @@ public class MouseListener extends MouseAdapter {
          currentElement.setSelected();
       }
          if (newElement !=null && allElement.size()>1){
-        	 System.out.println (allElement.size()+ " objetos");
-        	 System.out.println (key);
     	  if (key == true){
-    		  System.out.println ("reconoce n");
     	  	if (contador==allElement.size()){
     		  currentElement = allElement.get(contador);
     		  currentElement.setSelected();
