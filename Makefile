@@ -10,11 +10,11 @@ run:
 
 doc:
 	@echo -e "\e[1;42mGenerando documentacion\e[0m"
-	@javadoc -d docs src/*.java
+	@javadoc -d documentacion src/*.java
 	@echo -e "\e[1;42mDocumentacion generada\e[0m"
 
 clean:
 	@echo -e "\e[1;42mEliminando archivos binarios\e[0m"
 	rm *.class
 	@echo -e "\e[1;42mEliminando archivos documentacion\e[0m"
-	rm -rf docs
+	rm -rf doccumentacion
