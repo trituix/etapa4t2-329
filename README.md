@@ -29,6 +29,7 @@ La carpeta src contiene todos los archivos .java necesarios para ejecutar la apl
 *BallView.java
 *FixedHook.java
 *FixedHookView.java
+*KeyHandler.java
 *LabMenuListener.java
 *MouseListener.java
 *MyWorld.java
